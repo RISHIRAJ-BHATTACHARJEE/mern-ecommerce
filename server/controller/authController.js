@@ -99,3 +99,50 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
+export const loginAdmin = async (req, res) => {
+  try {
+    //Get admin email & password from body
+    const { email, password } = req.body;
+
+    //Get admin
+    const admin = await User.findOne({ email });
+
+    //If admin doesnot exists ask to login again
+    if (!admin) {
+      return res
+        .status(400)
+        .json({ message: "Admin not found login again" });
+    }
+
+    //compare password
+    const isPasswordValid = await bcrypt.compare(password, admin.password);
+
+    //if password doesnot match return invalid credentials
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: "Invalid Password" });
+    }
+
+    //generate jwt token
+    const secret = process.env.JWT_SECRET;
+    const token = jwt.sign({ id: admin._id }, secret, { expiresIn: "24h" });
+
+    // Set JWT in response header
+    res.set("Authorization", `Bearer ${token}`);
+
+    // Send response
+    res.status(200).json({
+      message: "Login Successful",
+      token,
+      user: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        password: admin.password,
+      }
+    })
+  } catch (error) {
+    console.log("error: ", error)
+    res.status(500).json({ message: "Server Error" });
+  }
+};
