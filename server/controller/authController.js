@@ -83,6 +83,8 @@ export const loginUser = async (req, res) => {
     // Set JWT in response header
     res.set("Authorization", `Bearer ${token}`);
 
+    //Set in local storage
+
     // Send response
     res.status(200).json({
       message: "Login Successful",

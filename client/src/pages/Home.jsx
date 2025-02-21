@@ -371,9 +371,11 @@ const Home = () => {
             );
           })}
         </div>
-        <Button className="!bg-[#DB4444] !text-white tracking-wide !font-medium !w-fit flex justify-center">
-          View All Products
-        </Button>
+        <div className="flex justify-center items-center">
+          <Button className="!bg-[#DB4444] !text-white tracking-wide !font-medium !w-fit flex justify-center">
+            View All Products
+          </Button>
+        </div>
       </div>
     </div>
   );
