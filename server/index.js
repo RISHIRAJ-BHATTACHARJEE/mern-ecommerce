@@ -15,8 +15,7 @@ mongoDB();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/v1/users", authRoutes);
-app.use("/api/v1/admin", authRoutes);
+app.use("/api/v1/", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on PORT ${PORT}`);
