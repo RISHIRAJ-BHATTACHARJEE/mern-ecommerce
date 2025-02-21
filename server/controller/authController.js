@@ -40,7 +40,7 @@ export const registerUser = async (req, res) => {
       user,
     });
   } catch (error) {
-    console.log("error: ", error)
+    console.log("error: ", error);
     res.status(500).json({ message: "Server Error" });
   }
 };
@@ -94,10 +94,10 @@ export const loginUser = async (req, res) => {
         name: user.name,
         email: user.email,
         password: user.password,
-      }
-    })
+      },
+    });
   } catch (error) {
-    console.log("error: ", error)
+    console.log("error: ", error);
     res.status(500).json({ message: "Server Error" });
   }
 };
@@ -112,9 +112,7 @@ export const loginAdmin = async (req, res) => {
 
     //If admin doesnot exists ask to login again
     if (!admin) {
-      return res
-        .status(400)
-        .json({ message: "Admin not found login again" });
+      return res.status(400).json({ message: "Admin not found login again" });
     }
 
     //compare password
@@ -127,7 +125,9 @@ export const loginAdmin = async (req, res) => {
 
     //generate jwt token
     const secret = process.env.JWT_SECRET;
-    const token = jwt.sign({ id: admin._id }, secret, { expiresIn: "24h" });
+    const token = jwt.sign({ id: admin._id, role: admin.role }, secret, {
+      expiresIn: "24h",
+    });
 
     // Set JWT in response header
     res.set("Authorization", `Bearer ${token}`);
@@ -141,10 +141,10 @@ export const loginAdmin = async (req, res) => {
         name: admin.name,
         email: admin.email,
         password: admin.password,
-      }
-    })
+      },
+    });
   } catch (error) {
-    console.log("error: ", error)
+    console.log("error: ", error);
     res.status(500).json({ message: "Server Error" });
   }
 };
