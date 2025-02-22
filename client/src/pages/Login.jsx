@@ -44,7 +44,7 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar value="signup" />
+      <Navbar value="login" />
       <Toaster/>
       <div className="flex !px-20 gap-20">
         <img src="/auth-image.png" alt="auth-image" className="w-[47vw]" />

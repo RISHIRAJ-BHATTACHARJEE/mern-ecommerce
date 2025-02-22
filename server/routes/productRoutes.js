@@ -14,10 +14,10 @@ const router = express.Router();
 router.post("/create", verifyToken, verifyAdmin, createProduct);
 
 //READ (Get All Products)
-router.get("/bulk", verifyToken, verifyAdmin, getAllProducts);
+router.get("/bulk", getAllProducts);
 
 //READ (Get a Single Product)
-router.get("/:productId", verifyToken, verifyAdmin, getProduct);
+router.get("/:productId", getProduct);
 
 //UPDATE a Product
 router.put("/:productId", verifyToken, verifyAdmin, updateProduct);
