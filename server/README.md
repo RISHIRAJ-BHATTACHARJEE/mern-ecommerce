@@ -4,11 +4,11 @@ This flowchart represents the **User and Admin flow** for an **E-Commerce Websit
 
 ## **User Flow**
 1. **Start**
-   - The user enters the website.
+   - The user enters the website. ✅
 
 2. **User Choice: Login or Register**
-   - If the user is **not registered**, they must **sign up**.
-   - If the user is **already registered**, they log in.
+   - If the user is **not registered**, they must **sign up**. ✅
+   - If the user is **already registered**, they log in. ✅
 
 3. **Search for Products**
    - Users can browse or **search for products**.
@@ -37,7 +37,7 @@ This flowchart represents the **User and Admin flow** for an **E-Commerce Websit
 10. **Stop**
    - End of the user journey.
 
----
+------------------------------------------
 
 ## **Admin Flow**
 1. **Start**
@@ -92,4 +92,107 @@ This flowchart represents the **User and Admin flow** for an **E-Commerce Websit
 ### **7. User & Admin Logout**
 - Implement **secure logout functionality**.
 
-Would you like me to help you design the database schema or API endpoints next? 🚀
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+
+API Endpoints
+These RESTful API endpoints will be used to manage the E-Commerce system.
+
+1. User Authentication
+Method	Endpoint	        Description
+POST	/api/auth/register	Register a new user
+POST	/api/auth/login	    Login and get JWT token
+GET	    /api/auth/profile	Get user profile (protected)
+PUT	    /api/auth/update	Update user profile (protected)
+
+2. Product Management
+Method	Endpoint	        Description
+GET	    /api/products	    Get all products
+GET	    /api/products/:id	Get product details by ID
+POST	/api/products	    Add a new product (Admin only)
+PUT	    /api/products/:id	Update product (Admin only)
+DELETE	/api/products/:id	Delete product (Admin only)
+
+3. Categories
+Method	Endpoint	        Description
+GET	    /api/categories	    Get all categories
+POST	/api/categories	    Add a new category (Admin only)
+DELETE	/api/categories/:id	Delete a category (Admin only)
+
+4. Orders
+Method	Endpoint	        Description
+POST	/api/orders	        Create an order
+GET	    /api/orders/:userId	Get user orders
+PUT	    /api/orders/:id	    Update order status (Admin only)
+DELETE	/api/orders/:id	    Cancel order
+
+5. Payments
+Method	Endpoint	            Description
+POST	/api/payments	        Process payment
+GET	    /api/payments/:orderId	Get payment details
+
+6. Feedback
+Method	Endpoint	                Description
+POST	/api/feedback	            Submit feedback
+GET	    /api/feedback/:productId    Get product feedback
+
+-----------------------------------------------
+For the Admin Panel, we need additional endpoints to manage products, orders, payments, and user feedback. 
+These endpoints should be protected so that only an admin user (with role: "admin") can access them.
+
+Admin API Endpoints
+These endpoints allow the admin to manage the entire system.
+
+1. Admin Authentication
+Admins will use the same login system as users but will have a different role.
+
+Method	Endpoint	        Description
+POST	/api/admin/login	Login as admin (returns JWT token)
+GET	    /api/admin/profile	Get admin profile (protected)
+✅ Implementation Note:
+When an admin logs in, the system should check role: "admin".
+If the role is not admin, return a 403 Forbidden response.
+
+2. Manage Categories
+Method	Endpoint	                Description
+POST	/api/admin/categories	    Add a new category
+PUT	    /api/admin/categories/:id	Update category details
+DELETE	/api/admin/categories/:id	Delete a category
+
+3. Manage Products
+Method	Endpoint	                Description
+POST	/api/admin/products	        Add a new product
+PUT	    /api/admin/products/:id	    Update product details
+DELETE	/api/admin/products/:id	    Delete a product
+
+4. Manage Orders
+Method	Endpoint	            Description
+GET	    /api/admin/orders	    Get all orders
+GET	    /api/admin/orders/:id	Get order details
+PUT	    /api/admin/orders/:id	Update order status (Pending → Completed)
+DELETE	/api/admin/orders/:id	Cancel an order
+✅ Implementation Note:
+Admin should be able to update order statuses (Pending, Shipped, Completed, Canceled).
+
+5. Manage Payments
+Method	Endpoint	                Description
+GET	    /api/admin/payments	        Get all payments
+GET	    /api/admin/payments/:id	    Get payment details by order ID
+✅ Implementation Note:
+Admin can view all transactions and verify payments.
+
+6. Manage User Feedback
+Method	Endpoint	            Description
+GET	    /api/admin/feedback	    View all feedback
+DELETE	/api/admin/feedback/:id	Delete inappropriate feedback
+✅ Implementation Note:
+Admin should be able to remove spam or inappropriate feedback.
+
+7. Generate Reports
+Method	Endpoint	                Description
+GET	    /api/admin/reports/sales	Get sales report
+GET	    /api/admin/reports/orders	Get order summary
+GET	    /api/admin/reports/payments	Get payment summary
+✅ Implementation Note:
+
+These endpoints should generate monthly reports on sales, orders, and payments.

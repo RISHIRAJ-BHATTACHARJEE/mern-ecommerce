@@ -16,6 +16,9 @@ router.post("/create", verifyToken, verifyAdmin, createProduct);
 //READ (Get All Products)
 router.get("/bulk", getAllProducts);
 
+//READ (Get All Products with Search and Filter)
+// router.get("/filter", getProductsWithFilter);
+
 //READ (Get a Single Product)
 router.get("/:productId", getProduct);
 

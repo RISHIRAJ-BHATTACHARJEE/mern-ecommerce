@@ -31,6 +31,6 @@ async function createAdmin() {
   }
 }
 
-createAdmin();
+createAdmin(); 
 
 export default User;

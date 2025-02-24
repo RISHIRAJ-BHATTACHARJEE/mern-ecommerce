@@ -41,14 +41,58 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
+// export const getProductsWithFilter = async (req, res) => {
+//   try {
+//     const { search, category, price } = req.query;
+//     let query = {};
+
+//     if(category) {
+//       const categoryDoc = await Category.findOne({name: category});
+
+//       if(categoryDoc) {
+//         query.category = categoryDoc._id;
+//       } else {
+//         return res.status(404).json({message: "Category not founf"})
+//       }
+//     }
+
+//     if (search) {
+//       query.$or = [
+//         {
+//           name: {
+//             $regex: search,
+//             $options: "i",
+//           },
+//         },
+//         {
+//           description: {
+//             $regex: search,
+//             $options: "i",
+//           },
+//         },
+//       ];
+//     }
+    
+//     if(price) {
+//       const [min, max] = price.split("-")
+//       query.price = { $gte: Number(min), $lte: Number(max)}
+//     }
+
+//     const products = await Product.find(query);
+//     res.json(products)
+//   } catch (error) {
+//     console.log("Error:- ", error);
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// };
+
 export const getProduct = async (req, res) => {
   try {
-    const {productId} = req.params
+    const { productId } = req.params;
     const product = await Product.findById(productId);
 
-    if (!product)
-      return res.status(404).json({ message: "Product not found" });
-    
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
