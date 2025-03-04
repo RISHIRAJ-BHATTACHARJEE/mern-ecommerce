@@ -5,7 +5,7 @@ import { Rating } from "@/components/ui/rating"
 
 const ProductCard = ({imageUrl, productTitle, discountedPrice, originalPrice, ratingValue}) => {
   return (
-    <div className='flex flex-col gap-3 !border-2 !w-fit !p-4 !rounded-md'>
+    <div className='flex flex-col gap-3 !border-2 !w-fit !p-4 !rounded-md hover:bg-[#5e3c35]'>
         <div className='!border-2 !relative !w-fit bg-white !p-5 !rounded-tr-lg !rounded-tl-lg'>
             <Image src={imageUrl} className='w-[12vw]'/>
             <IoHeartOutline size={24} className='absolute top-3 right-3 text-black cursor-pointer'/>
