@@ -4,6 +4,8 @@ import { GoChevronRight } from "react-icons/go";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 import { Button, Separator } from "@chakra-ui/react";
 import ProductCard from "@/components/ProductCard";
+import  ServiceSection from "@/components/Services"
+import Footer from "@/components/Footer";
 
 const bannerItems = [
   "Woman's Fashion",
@@ -318,9 +320,10 @@ const Home = () => {
             View All
           </Button>
         </div>
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-4 gap-10 ">
           {productCard.map((item, index) => {
             return (
+
               <ProductCard
                 imageUrl={item.imageUrl}
                 productTitle={item.productTitle}
@@ -329,6 +332,7 @@ const Home = () => {
                 ratingValue={item.ratingValue}
                 key={index}
               />
+
             );
           })}
         </div>
@@ -344,8 +348,8 @@ const Home = () => {
         />
       </div>
 
-      {/* BEST SELLING PRODUCTS */}
-      <div className="!px-20 !mt-[8rem] flex flex-col gap-20 border-t-1 justify-center">
+      {/* best selling product */}
+      <div className="!px-20 !mt-[8rem] flex flex-col gap-20 border-t-1 justify-center ">
         <div className="flex items-center gap-5">
           <img src="/rectangle.svg" alt="rectangle" />
           <h1 className="text-[#DB4444] !text-xl !font-semibold tracking-wide">
@@ -357,7 +361,7 @@ const Home = () => {
             Explore Our Products
           </h1>
         </div>
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-4 gap-10 ">
           {ourProducts.map((item, index) => {
             return (
               <ProductCard
@@ -368,6 +372,7 @@ const Home = () => {
                 ratingValue={item.ratingValue}
                 key={index}
               />
+
             );
           })}
         </div>
@@ -377,8 +382,76 @@ const Home = () => {
           </Button>
         </div>
       </div>
+      <div className="!px-20 !mt-[8rem] flex flex-col gap-20 border-t-1 justify-center ">
+        <div className="flex items-center gap-5">
+          <img src="/rectangle.svg" alt="rectangle" />
+          <h1 className="text-[#DB4444] !text-xl !font-semibold tracking-wide">
+            Featured
+          </h1>
+        </div>
+        <div className="flex justify-between">
+          <h1 className="!text-5xl !font-semibold tracking-widest">
+            New Arrival
+          </h1>
+        </div>
+        <div className="grid grid-cols-2 gap-4 p-6 bg-gray-900 min-h-screen">
+      
+      <div className="relative bg-black rounded-xl overflow-hidden">
+        <img src="/ps-image.png" alt="PlayStation 5" className="w-full h-full object-cover" />
+        <div className="absolute bottom-4 left-4 text-white">
+          <h2 className="text-xl font-bold">PlayStation 5</h2>
+          <p className="text-sm">Black and White version of the PS5 coming out soon.</p>
+          <button className="mt-2 px-4 py-2 bg-white text-black rounded-md">Shop Now</button>
+        </div>
+      </div>
+
+      
+      <div className="grid grid-cols-2 grid-rows-2 gap-4">
+        
+        <div className="relative col-span-2 bg-black rounded-xl overflow-hidden">
+          <img src="/women-img.jpg" alt="Women's Collections" className="w-full h-full object-cover scale-x-[-1]" />
+          <div className="absolute bottom-4 left-4 text-white">
+            <h2 className="text-lg font-bold">Women’s Collections</h2>
+            <p className="text-sm">Featured women collections that give you another vibe.</p>
+            <button className="mt-2 px-4 py-2 bg-white text-black rounded-md">Shop Now</button>
+          </div>
+        </div>
+        
+        
+        <div className="relative bg-black rounded-xl overflow-hidden">
+          <img src="/Speakers-image.png" alt="Speakers" className="w-full h-full object-cover" />
+          <div className="absolute bottom-4 left-4 text-white">
+            <h2 className="text-md font-bold">Speakers</h2>
+            <p className="text-xs">Amazon wireless speakers</p>
+            <button className="mt-2 px-4 py-2 bg-white text-black rounded-md">Shop Now</button>
+          </div>
+        </div>
+        
+        
+        <div className="relative bg-black rounded-xl overflow-hidden">
+          <img src="/perfume-image.png" alt="Perfume" className="w-full h-full object-cover" />
+          <div className="absolute bottom-4 left-4 text-white">
+            <h2 className="text-md font-bold">Perfume</h2>
+            <p className="text-xs">GUCCI INTENSE OUD EDP</p>
+            <button className="mt-2 px-4 py-2 bg-white text-black rounded-md">Shop Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+       
+      </div>
+     
+        <div className="!mt-28">
+        <ServiceSection/>
+        </div>
+        <div className="!mt-20">
+          <Footer/>
+        </div>
+     
     </div>
   );
+  
 };
 
 export default Home;
